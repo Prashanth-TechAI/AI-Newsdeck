@@ -2,7 +2,6 @@
 name = "news-dashboard-backend"
 version = "0.1.0"
 description = "FastAPI backend for the NewsPulse AI news dashboard"
-readme = "../README.md"
 requires-python = ">=3.10"
 dependencies = [
     "fastapi>=0.115.5",
