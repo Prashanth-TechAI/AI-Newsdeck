@@ -25,7 +25,7 @@ def get_client() -> AsyncOpenAI:
             api_key=settings.openrouter_api_key,
             base_url=settings.openrouter_base_url,
             default_headers={
-                "HTTP-Referer": "http://localhost:5173",
+                "HTTP-Referer": settings.app_url,
                 "X-Title": "NewsPulse",
             },
             timeout=settings.request_timeout_seconds,

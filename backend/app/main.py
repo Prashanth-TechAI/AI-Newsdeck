@@ -37,6 +37,8 @@ async def lifespan(app: FastAPI):
     await init_db()
     log.info("Database ready: %s", settings.database_url)
     if settings.jwt_secret == "dev-secret-change-me-in-production":
+        if settings.is_production:
+            raise RuntimeError("JWT_SECRET must be set to a strong random value when APP_ENV=production.")
         log.warning("⚠ JWT_SECRET is the default — set a strong value in .env for production.")
     start_scheduler()
     yield

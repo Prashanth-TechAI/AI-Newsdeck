@@ -119,7 +119,9 @@ async def forgot_password(
         user.id, user.email, settings.password_reset_expires_minutes,
     )
 
-    # In production, email this. In MVP we surface it so testing is possible.
+    # In production, email this. In development we surface it so testing is possible.
+    if settings.is_production:
+        return ForgotPasswordResponse(message=generic_msg)
     return ForgotPasswordResponse(
         message=generic_msg
         + " (DEV: token returned in dev_reset_token field — wire up email in production.)",

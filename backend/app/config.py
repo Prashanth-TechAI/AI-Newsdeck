@@ -23,6 +23,12 @@ class Settings(BaseSettings):
         extra="ignore",
     )
 
+    # "development" or "production". Production refuses the default JWT secret
+    # and never returns password-reset tokens in API responses.
+    app_env: str = "development"
+    # Public URL of the frontend (sent to OpenRouter as HTTP-Referer).
+    app_url: str = "http://localhost:5173"
+
     openrouter_api_key: str
     openrouter_model: str = "anthropic/claude-sonnet-4.6"
     openrouter_base_url: str = "https://openrouter.ai/api/v1"
@@ -58,6 +64,10 @@ class Settings(BaseSettings):
     scheduler_interval_minutes: int = 60
     scheduler_max_keywords_per_run: int = 20
     scheduler_run_on_startup: bool = False
+
+    @property
+    def is_production(self) -> bool:
+        return self.app_env.lower() == "production"
 
     @property
     def cors_origin_list(self) -> list[str]:
