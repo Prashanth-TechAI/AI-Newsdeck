@@ -1,0 +1,19 @@
+.env
+.env.local
+*.log
+
+# Python
+backend/.venv/
+backend/__pycache__/
+backend/**/__pycache__/
+*.pyc
+
+# Node
+ui/node_modules/
+ui/dist/
+.DS_Store
+
+# Local data / tooling
+app.db
+.playwright-mcp/
+*.tsbuildinfo
